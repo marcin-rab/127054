@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Marcin Rabiza</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="alt">
+				<div class="inner">
+					<h1>Marcin Rabiza</h1>
+					<p>Internet applications final project
+				</div>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+
+				<!-- Main -->
+				
+				<section id="main" class="main">
+						<header>
+							<h2>Webstorage & geocaching</h2>
+						</header>
+
+                        <script>
+
+                            function visitCount() {
+                              var visits = Number(localStorage.getItem('visitCount'));
+                              var current = Boolean(sessionStorage.getItem('session'));
+
+                              if (!current) {
+                                visits++;
+                              }
+
+                              localStorage.setItem('visitCount', visits);
+                              sessionStorage.setItem('session', true);
+
+                              return visits;
+                            }
+
+                            if (typeof(Storage) !== "undefined") {
+                                // Store
+                                localStorage.setItem("countedVisits", visitCount());
+                                // Retrieve
+                                document.getElementById("result").innerHTML = localStorage.getItem("countedVisits");
+                            } else {
+                                document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+                            }
+                            </script>
+                            <center>
+                            <br/>
+
+                                <p>Your current position coordinates:</p>
+                            <button onclick="getLocation1()"><wbr>Coordinates</button>
+                            <p id="demo1"></p>
+
+                            <script>
+                            var x = document.getElementById("demo1");
+
+                            function getLocation1() {
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(showPosition1, showError1);
+                                } else {
+                                    x.innerHTML = "Geolocation is not supported by this browser.";
+                                }
+                            }
+
+                            function showPosition1(position) {
+                                x.innerHTML = "Latitude: " + position.coords.latitude +
+                                "<br>Longitude: " + position.coords.longitude;
+                            }
+
+                            function showError1(error) {
+                                switch(error.code) {
+                                    case error.PERMISSION_DENIED:
+                                        x.innerHTML = "User denied the request for Geolocation."
+                                        break;
+                                    case error.POSITION_UNAVAILABLE:
+                                        x.innerHTML = "Location information is unavailable."
+                                        break;
+                                    case error.TIMEOUT:
+                                        x.innerHTML = "The request to get user location timed out."
+                                        break;
+                                    case error.UNKNOWN_ERROR:
+                                        x.innerHTML = "An unknown error occurred."
+                                        break;
+                                }
+                            }
+                            </script>
+
+                                <br/>
+
+                            <p id="demo">Your current position shown on a map:</p>
+                            <button onclick="getLocation2()">Map</button>
+                                <br/>
+                                <br/>
+                            <div id="mapholder"></div>
+
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDABf8smdZAeSOX1EdBGHRNHi2QYBve7L0&callback=myMap"></script>
+                            <!-- Klucz API wygerowane przez stronę: https://code.google.com/apis/console/ -->
+                            <script>
+                            var x = document.getElementById("demo");
+                            function getLocation2() {
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(showPosition2, showError2);
+                                } else {
+                                    x.innerHTML = "Geolocation is not supported by this browser.";
+                                }
+                            }
+
+                            function showPosition2(position) {
+                                var lat = position.coords.latitude;
+                                var lon = position.coords.longitude;
+                                var latlon = new google.maps.LatLng(lat, lon)
+                                var mapholder = document.getElementById('mapholder')
+                                mapholder.style.height = '250px';
+                                mapholder.style.width = '500px';
+
+                                var myOptions = {
+                                center:latlon,zoom:14,
+                                mapTypeId:google.maps.MapTypeId.ROADMAP,
+                                mapTypeControl:false,
+                                navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+                                }
+
+                                var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+                                var marker = new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+                            }
+
+                            function showError2(error) {
+                                switch(error.code) {
+                                    case error.PERMISSION_DENIED:
+                                        x.innerHTML = "User denied the request for Geolocation."
+                                        break;
+                                    case error.POSITION_UNAVAILABLE:
+                                        x.innerHTML = "Location information is unavailable."
+                                        break;
+                                    case error.TIMEOUT:
+                                        x.innerHTML = "The request to get user location timed out."
+                                        break;
+                                    case error.UNKNOWN_ERROR:
+                                        x.innerHTML = "An unknown error occurred."
+                                        break;
+                                }
+                            }
+
+                            </script>
+                    </center>
+					</section>
+                
+				<!-- Homepage button -->
+					<section id="cta" class="main special">
+						<ul class="actions">
+								<center><a href="index.html" class="button">Back to homepage</a></center>
+                        </ul>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://twitter.com/" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://www.facebook.com/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.instagram.com/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://www.linkedin.com/in/marcin-rabiza-6558b9148/" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://github.com/marcin-rab/127054" class="icon fa-github"><span class="label">GitHub</span></a></li>
+                            <!--<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>-->
+						</ul>
+                        <p class="copyright">Marcin Rabiza &copy; 2018</p>
+                </footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

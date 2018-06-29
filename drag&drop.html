@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Marcin Rabiza</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+        <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+        <style>
+    #div1, #div2, #div3 {
+        width: 125px;
+        height: 100px;
+        padding: 0px;
+        border: 1px dotted #aaaaaa;
+    }
+</style>
+
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var image = ev.dataTransfer.getData("content");
+    ev.target.appendChild(document.getElementById(data));
+    ev.target.appendChild(document.getElementById(image));
+  }
+
+</script>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="alt">
+				<div class="inner">
+					<h1>Marcin Rabiza</h1>
+					<p>Internet applications final project
+				</div>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+
+				<!-- Main -->
+				
+				<section id="main" class="main">
+						<header>
+							<h2>Drag & drop</h2>
+						</header>
+                            <div id="text" align="middle">
+                            <p>Drag and drop animals in the following order: rhino, butterfly, cow.</p> 
+                            </div>
+                    
+                                <table align="center">
+                                    <tr>
+                                    <td>
+                                    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                    </td>
+                                    <td>
+                                    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                    </td>
+                                    <td>
+                                    <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <br>
+
+                                    <table align="center">
+                                    <tr>
+                                      <td>
+                                        <img id="drag1" src="modules/drag&drop/motyl.JPG" draggable="true" ondragstart="drag(event)" width="135" height="110">
+                                      </td>
+                                      <td>
+                                        <img id="drag2" src="modules/drag&drop/nosorozec.JPG" draggable="true" ondragstart="drag(event)" width="135" height="110">
+                                      </td>
+                                      <td>
+                                        <img id="drag3" src="modules/drag&drop/krowa.JPG" draggable="true" ondragstart="drag(event)" width="135" height="110">
+                                      </td>
+                                    </tr>
+                                    </table>
+                    
+                                    <br>
+                    
+                      <div id="text" align="middle">
+                            <p>Checking button will not work until you drop all the animals.</p>
+                            </div>
+
+                        <div id="text" align="middle">
+                            <button onclick="myFunction()"><wbr>Check your soultion</button>
+                            <br/>
+                            <br/>
+                        <div id="demo"></div>
+                                </div>
+                    
+                                    <script>
+                                      function myFunction() {
+
+                                        var pierwszy = document.getElementById("div1").childNodes[1].id;
+                                        var drugi = document.getElementById("div2").childNodes[1].id;
+                                        var trzeci = document.getElementById("div3").childNodes[1].id;
+
+                                        if (pierwszy == "drag2" && drugi == "drag1" && trzeci == "drag3") {
+                                            document.getElementById("demo").innerHTML = "Correct!";
+                                          }
+                                          else {
+                                            document.getElementById("demo").innerHTML = "Incorrect!";
+                                          }
+                                        }
+                            </script>
+					</section>
+                
+				<!-- Homepage button -->
+					<section id="cta" class="main special">
+						<ul class="actions">
+								<center><a href="index.html" class="button">Back to homepage</a></center>
+                        </ul>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://twitter.com/" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://www.facebook.com/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.instagram.com/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://www.linkedin.com/in/marcin-rabiza-6558b9148/" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://github.com/marcin-rab/127054" class="icon fa-github"><span class="label">GitHub</span></a></li>
+                            <!--<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>-->
+						</ul>
+                        <p class="copyright">Marcin Rabiza &copy; 2018</p>
+                </footer>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
